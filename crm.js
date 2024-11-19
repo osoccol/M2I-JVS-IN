@@ -42,10 +42,13 @@ function ajouterClient(nouveauClient) {
 ajouterClient({id: 103, nom: "Martin", email: "martin@example.com"});
 console.log(clients);
 
-// const afficherNoms = (clients) => {
-//     console.log(clients.map(cli => cli.nom));
-// };
-// afficherNoms(clients);
+const afficherNoms = (clients) => {
+    for(let i = 0; i< clients.length; i++) {
+        console.log(clients[i].nom);
+    }
+    // console.log(clients.map(cli => cli.nom));
+};
+afficherNoms(clients);
 
 // const crm = {
 //     nom: "Gestion clients",
