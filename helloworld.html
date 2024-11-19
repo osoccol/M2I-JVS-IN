@@ -7,14 +7,41 @@
 </head>
 
 <body>
-  <button onclick="welcome()">Cliquez-moi</button>
+  <!-- <button onclick="welcome()">Cliquez-moi</button>
 
   <p id="message">Message par défaut</p>
   <button onclick="changerMessage()">Changer le message</button>
 
   <p id="infoClient">Nom : Inconnu, Âge : Inconnu, Pays : Inconnu</p>
-  <button onclick="updateClientInfo()">Mettre à jour les informations</button>
+  <button onclick="updateClientInfo()">Mettre à jour les informations</button> -->
 
+  <!-- Exercice 3 -->
+  <h1>CRM - Gestion des Clients</h1>
+
+  <!-- Formulaire de recherche -->
+  <label for="clientId">Rechercher un client (ID) :</label>
+  <input type="number" id="clientId" placeholder="Entrez un ID">
+  <button onclick="rechercherEtAfficherClient()">Rechercher</button>
+
+  <!-- Zone d'affichage des détails -->
+  <p id="clientDetails">Aucun client recherché pour le moment.</p>
+
+  <div>
+    <label for="nouveauClientId">Nouvel ID :</label>
+    <input type="number" id="nouveauClientId" placeholder="Entrez un ID">
+  </div>
+
+  <div>
+    <label for="nouveauClientNom">Nouveau nom :</label>
+    <input type="text" id="nouveauClientNom" placeholder="Entrez un nom">
+  </div>
+
+  <div>
+    <label for="nouveauClientEmail">Nouvel email :</label>
+    <input type="text" id="nouveauClientEmail" placeholder="Entrez un email">
+  </div>
+  
+  <button onclick="nouveauClient()">Ajouter un client</button>
 </body>
 
 </html>
