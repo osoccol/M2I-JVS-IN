@@ -90,3 +90,32 @@ function nouveauClient() {
     const nouveauClientEmail = document.getElementById("nouveauClientEmail").value;
     ajouterClient({ id: nouveauClientId, nom: nouveauClientNom, email: nouveauClientEmail });
 }
+
+function Client(nom, email) {
+    this.nom = nom;
+    this.email = email;
+}
+
+// Ajout de méthode au prototype
+Client.prototype.afficherDetails = function() {
+    console.log(`Nom : ${this.nom}, Email : ${this.email}`);
+};
+
+const client1 = new Client("Marc", "marc@example.com");
+client1.afficherDetails(); // Utilise la méthode du prototype
+
+const clientModele = {
+    afficherDetails: function() {
+        console.log(`Nom : ${this.nom}, Email : ${this.email}`);
+    }
+};
+
+// Création d'objets basés sur clientModele
+const client2 = Object.create(clientModele);
+client2.afficherDetails(); // Hérite de clientModele
+
+console.log("--------------------");
+
+client2.nom = "Alice";
+client2.email = "alice@example.com";
+client2.afficherDetails();
