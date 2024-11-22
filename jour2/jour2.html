@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <script src="jour2.js"></script>
+    <link rel="stylesheet" href="jour2.css">
+</head>
+
+<body>
+    <button onclick="ajouterClient()">Ajouter client</button>
+    <button onclick="supprimerElement('client')">Supprimer client</button>
+    <button onclick="styliserParagraphes()">Styliser les paragraphes</button>
+    <button id="ajouterEvenement">Ajouter événement</button>
+    <div id="container"></div>
+
+
+
+    <label for="clientName">Nom du client :</label>
+    <input type="text" id="clientName" placeholder="Entrez un nom">
+    <button onclick="ajouterClientListe()">Ajouter à la liste</button>
+    <button onclick="styliserClients()">Styliser les clients</button>
+
+    <ul id="listeClients"></ul>
+
+</body>
+
+</html>
