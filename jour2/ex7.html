@@ -28,6 +28,28 @@
                 background-color: lightblue;
             }
         }
+
+        #infoSection {
+            padding: 20px;
+            border: 1px solid black;
+            text-align: center;
+        }
+
+        @media (max-width: 768px) {
+            #infoSection {
+                background-color: lightgray;
+                color: red;
+                font-size: 14px;
+            }
+        }
+
+        @media (min-width: 768px) {
+            #infoSection {
+                background-color: white;
+                color: blue;
+                font-size: 18px;
+            }
+        }
     </style>
 </head>
 
@@ -72,5 +94,11 @@
     </table>
 </body>
 <div id="pagination"></div>
+
+
+<div id="infoSection">
+    <p>Voici une section d'information adaptable.</p>
+</div>
+
 
 </html>

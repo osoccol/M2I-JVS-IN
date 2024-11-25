@@ -181,10 +181,10 @@ setTimeout(() => {
     window.addEventListener("resize", () => {
         const width = window.innerWidth;
 
-        if (width < 800 && width > 768) {
-            document.body.style.backgroundColor = "red";
-        } else if (width >= 800) {
-            document.body.style.backgroundColor = "blue";
+        if (width < 768) {
+            console.log("Mode mobile activé");
+        } else {
+            console.log("Mode desktop activé");
         }
     });
 
