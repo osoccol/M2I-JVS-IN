@@ -96,6 +96,58 @@ setTimeout(() => {
         box.style.backgroundColor = 'green';
     });
 
-
 }, 200)
 
+
+function validerForm() {
+    // Récupérer les données d'un champ spécifique
+    // const nom = document.getElementById("nom").value;
+    // console.log("Nom :", nom);
+
+    // Récupérer les données de tout le formulaire
+    const formulaire = document.querySelector("form");
+    const formData = new FormData(formulaire);
+    formData.forEach((valeur, champ) => {
+        console.log(`${champ}: ${valeur}`);
+    });
+}
+
+function ajouterChamp() {
+    const nouveauChamp = document.createElement("input");
+    nouveauChamp.type = "number";
+    nouveauChamp.name = "age";
+    nouveauChamp.placeholder = "Entrez un nombre";
+
+    const formulaire = document.getElementById("form");
+    formulaire.appendChild(nouveauChamp);
+}
+
+
+function validerFormulaire(event) {
+    if (event) {
+        event.preventDefault(); // Empêche l'envoi par défaut
+    }
+
+    const nom = document.getElementById("nom").value;
+    const email = document.getElementById("email").value;
+
+    if (!nom) {
+        alert("Le champ 'Nom' est obligatoire.");
+        return;
+    }
+    if (!email.includes("@")) {
+        alert("Veuillez entrer un email valide.");
+        return;
+    }
+
+    alert("Formulaire validé avec succès !");
+    validerForm();
+}
+
+
+setTimeout(() => {
+    const champ = document.getElementById("email");
+    champ.addEventListener("focus", () => console.log("Focus sur le champ email"));
+    champ.addEventListener("blur", () => console.log("Champ email perdu de vue"));
+
+}, 200);

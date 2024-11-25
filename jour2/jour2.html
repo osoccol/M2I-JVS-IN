@@ -9,6 +9,15 @@
 
 <body>
     <div style="border: 1px solid red;">
+        <form id="form">
+            <input type="text" id="nom" name="nom" placeholder="Entrez un nom">
+            <input type="email" id="email" name="email" placeholder="martin@example.com">
+        </form>
+        <button type="button" onclick="ajouterChamp()">Ajouter un champ Age</button>
+        <button type="button" onclick="validerFormulaire(event)">Valider</button>
+    </div>
+
+    <div>
         <input type="text" id="champ" placeholder="Tapez ici">
         <p id="resultat"></p>
         <button id="bouton">Cliquer</button>

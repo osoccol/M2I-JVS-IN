@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tableau interactif</title>
+    <script src="ex7.js"></script>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            border: 1px solid black;
+            padding: 10px;
+            text-align: left;
+        }
+
+        .highlight {
+            background-color: lightgreen;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Gestion des clients</h1>
+
+    <form id="clientForm">
+        <label for="nom">Nom :</label>
+        <input type="text" id="nom" placeholder="Entrez un nom">
+        <br>
+        <label for="email">Email :</label>
+        <input type="email" id="email" placeholder="Entrez un email">
+        <br>
+        <label for="age">Âge :</label>
+        <input type="number" id="age" placeholder="Entrez l'âge">
+        <br>
+        <button type="button" onclick="ajouterClient()">Ajouter un client</button>
+    </form>
+
+    <p id="liveFeedback"></p>
+
+    <button onclick="styliserMajeurs()">Styliser les majeurs</button>
+    <button onclick="sauvegarderClients()">Sauvegarder les clients</button>
+    <button onclick="trierParNom()">Trier les clients par nom</button>
+    <button onclick="trierParAge()">Trier les clients par age</button>
+    <button onclick="inverserOrdre()">Inverser les clients</button>
+
+    <h2>Liste des clients</h2>
+    <table id="clientTable">
+        <thead>
+            <tr>
+                <th>Nom</th>
+                <th>Email</th>
+                <th>Âge</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Les clients seront ajoutés ici -->
+        </tbody>
+    </table>
+</body>
+
+</html>
