@@ -94,21 +94,18 @@ function peuplerTableau() {
 function trierParname() {
     clients.sort((a, b) => a.name.localeCompare(b.name));
     console.log("Clients triés par name :", clients);
-    sauvegarderClients();
 }
 
 // Méthode pour trier les clients par téléphone
 function trierParPhone() {
     clients.sort((a, b) => a.name.localeCompare(b.phone));
     console.log("Clients triés par téléphone :", clients);
-    sauvegarderClients();
 }
 
 // Méthode pour inverser l'ordre des clients
 function inverserOrdre() {
     clients.reverse();
     console.log("Ordre inversé des clients :", clients);
-    sauvegarderClients();
 }
 
 function sauvegarderClients() {
@@ -116,7 +113,6 @@ function sauvegarderClients() {
     localStorage.setItem('email', clients.map(el => el.email));
     localStorage.setItem('phone', clients.map(el => el.phone));
     alert("Clients bien sauvegardés !");
-    window.location.reload();
 }
 
 setTimeout(() => {
