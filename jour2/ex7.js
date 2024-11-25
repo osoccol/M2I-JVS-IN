@@ -66,11 +66,11 @@ function peuplerTableau() {
     let noms = localStorage.getItem("nom").split(',');
     let emails = localStorage.getItem("email").split(',');
     let ages = localStorage.getItem("age").split(',');
-    
+
     if (nom && emails && ages) {
         let savedClients = [];
         for (let i = 0; i < noms.length; i++) {
-            let cli = {nom: noms[i], email: emails[i], age: ages[i]};
+            let cli = { nom: noms[i], email: emails[i], age: ages[i] };
             savedClients.push(cli);
         }
         clients = savedClients;
@@ -130,11 +130,11 @@ setTimeout(() => {
 function rechercherClient() {
     const recherche = document.getElementById('search').value.toLowerCase();
     const rows = document.querySelectorAll("#clientTable tbody tr");
-    
+
     rows.forEach(row => {
         const nom = row.children[0].textContent.toLowerCase();
         const email = row.children[1].textContent.toLowerCase();
-        
+
         if (nom.includes(recherche) || email.includes(recherche)) {
             row.style.display = '';
         } else {
@@ -160,3 +160,32 @@ function modifierClient(button) {
     document.querySelector("button[onclick='ajouterClient()']").innerText = "Enregistrer les modifications";
 }
 
+
+setTimeout(() => {
+    const mq = window.matchMedia("(min-width: 768px)");
+
+    if (mq.matches) {
+        console.log("Large écran !");
+    } else {
+        console.log("Petit écran !");
+    }
+
+    mq.addEventListener("change", (event) => {
+        if (event.matches) {
+            console.log("Passé à un large écran !");
+        } else {
+            console.log("Passé à un petit écran !");
+        }
+    });
+
+    window.addEventListener("resize", () => {
+        const width = window.innerWidth;
+
+        if (width < 800 && width > 768) {
+            document.body.style.backgroundColor = "red";
+        } else if (width >= 800) {
+            document.body.style.backgroundColor = "blue";
+        }
+    });
+
+}, 100)
