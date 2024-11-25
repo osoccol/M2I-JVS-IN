@@ -33,7 +33,7 @@ function ajouterClient() {
         <td>${nom}</td>
         <td>${email}</td>
         <td>${age}</td>
-        <td><button onclick="supprimerClient(this)">Supprimer</button></td>
+        <td><button onclick="supprimerClient(this)">Supprimer</button><button onclick="modifierClient(this)">Modifier</button></td>
     `;
 
     tableBody.appendChild(row);
@@ -85,7 +85,7 @@ function peuplerTableau() {
             <td>${el.nom}</td>
             <td>${el.email}</td>
             <td>${el.age}</td>
-            <td><button onclick="supprimerClient(this)">Supprimer</button></td>
+            <td><button onclick="supprimerClient(this)">Supprimer</button><button onclick="modifierClient(this)">Modifier</button></td>
         `;
 
         tableBody.appendChild(row);
@@ -125,3 +125,38 @@ function sauvegarderClients() {
 setTimeout(() => {
     peuplerTableau();
 }, 100)
+
+
+function rechercherClient() {
+    const recherche = document.getElementById('search').value.toLowerCase();
+    const rows = document.querySelectorAll("#clientTable tbody tr");
+    
+    rows.forEach(row => {
+        const nom = row.children[0].textContent.toLowerCase();
+        const email = row.children[1].textContent.toLowerCase();
+        
+        if (nom.includes(recherche) || email.includes(recherche)) {
+            row.style.display = '';
+        } else {
+            row.style.display = 'none';
+        }
+    });
+}
+
+function modifierClient(button) {
+    const row = button.parentElement.parentElement;
+    const nom = row.children[0].textContent;
+    const email = row.children[1].textContent;
+    const age = row.children[2].textContent;
+
+    // Remplir le formulaire avec les données actuelles
+    document.getElementById('nom').value = nom;
+    document.getElementById('email').value = email;
+    document.getElementById('age').value = age;
+
+    supprimerClient(button);
+
+    // Modifier le bouton pour indiquer une mise à jour
+    document.querySelector("button[onclick='ajouterClient()']").innerText = "Enregistrer les modifications";
+}
+
