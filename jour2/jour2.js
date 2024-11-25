@@ -59,3 +59,43 @@ function styliserClients() {
         client.style.cursor = "pointer"; // Indique que l'élément est cliquable
     });
 }
+
+
+setTimeout(() => {
+    const champ = document.getElementById('champ');
+    const bouton = document.getElementById('bouton');
+    const resultat = document.getElementById('resultat');
+
+    // Détecter la saisie
+    champ.addEventListener('input', (event) => {
+        resultat.textContent = `Vous avez tapé : ${event.target.value}`;
+    });
+
+    // Détecter le clic
+    bouton.addEventListener('click', () => {
+        alert('Bouton cliqué !');
+    });
+
+    const lien = document.getElementById('lien');
+    lien.addEventListener('click', (event) => {
+        event.preventDefault(); // Empêche le comportement par défaut
+        alert("Redirection bloquée !");
+    });
+
+    const box = document.getElementById('box');
+
+    box.addEventListener('mouseover', () => {
+        box.style.backgroundColor = 'lightblue';
+    });
+
+    box.addEventListener('mouseout', () => {
+        box.style.backgroundColor = 'lightgray';
+    });
+
+    box.addEventListener('click', () => {
+        box.style.backgroundColor = 'green';
+    });
+
+
+}, 200)
+

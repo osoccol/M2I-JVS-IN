@@ -8,13 +8,25 @@
 </head>
 
 <body>
+    <div style="border: 1px solid red;">
+        <input type="text" id="champ" placeholder="Tapez ici">
+        <p id="resultat"></p>
+        <button id="bouton">Cliquer</button>
+    </div>
+
+    <div>
+        <a href="https://example.com" id="lien">Cliquez ici</a>
+    </div>
+
+    <div id="exercice-6">
+        <div id="box" style="width: 100px; height: 100px; background: lightgray;"></div>
+    </div>
+
     <button onclick="ajouterClient()">Ajouter client</button>
     <button onclick="supprimerElement('client')">Supprimer client</button>
     <button onclick="styliserParagraphes()">Styliser les paragraphes</button>
     <button id="ajouterEvenement">Ajouter événement</button>
     <div id="container"></div>
-
-
 
     <label for="clientName">Nom du client :</label>
     <input type="text" id="clientName" placeholder="Entrez un nom">
