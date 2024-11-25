@@ -1,38 +1,38 @@
 let clients = [
-    { nom: "Alice", email: "alice@example.com", age: 25 },
-    { nom: "Bob", email: "bob@example.com", age: 32 }
+    { name: "Alice", email: "alice@example.com", phone: "0647839283" },
+    { name: "Bob", email: "bob@example.com", phone: "0623010929" }
 ];
 
 // Fonction pour ajouter un client au tableau
 function ajouterClient() {
-    const nom = document.getElementById("nom").value;
+    const name = document.getElementById("name").value;
     const email = document.getElementById("email").value;
-    const age = document.getElementById("age").value;
+    const phone = document.getElementById("phone").value;
 
     // Validation des données
-    if (!nom.trim()) {
-        alert("Le champ 'Nom' est obligatoire.");
+    if (!name.trim()) {
+        alert("Le champ 'name' est obligatoire.");
         return;
     }
     if (!email.includes("@")) {
         alert("Veuillez entrer un email valide.");
         return;
     }
-    if (isNaN(age)) {
-        alert("L'âge est obligatoire");
+    if (!phone.trim()) {
+        alert("Le téléphone est obligatoire");
         return;
     }
 
-    clients.push({ nom: nom, email: email, age: age });
+    clients.push({ name: name, email: email, phone: phone });
 
     // Ajouter une ligne dans le tableau
     const tableBody = document.getElementById("clientTable").querySelector("tbody");
     const row = document.createElement("tr");
 
     row.innerHTML = `
-        <td>${nom}</td>
+        <td>${name}</td>
         <td>${email}</td>
-        <td>${age}</td>
+        <td>${phone}</td>
         <td><button onclick="supprimerClient(this)">Supprimer</button><button onclick="modifierClient(this)">Modifier</button></td>
     `;
 
@@ -45,65 +45,62 @@ function ajouterClient() {
 // Fonction pour supprimer un client
 function supprimerClient(button) {
     const row = button.parentElement.parentElement; // Récupère la ligne parent    
-    clients = clients.filter(el => el.nom != row.children[0].textContent); // Recherche avancée
+    clients = clients.filter(el => el.name != row.children[0].textContent); // Recherche avancée
     row.remove();
 }
 
 // Fonction pour styliser les clients majeurs
-function styliserMajeurs() {
-    const rows = document.querySelectorAll("#clientTable tbody tr");
-    rows.forEach(row => {
-        const age = parseInt(row.children[2].textContent);
-        if (age >= 18) {
-            row.classList.add("highlight");
-        } else {
-            row.classList.remove("highlight");
-        }
-    });
-}
+// function styliserMajeurs() {
+//     const rows = document.querySelectorAll("#clientTable tbody tr");
+//     rows.forEach(row => {
+//         const age = parseInt(row.children[2].textContent);
+//         if (age >= 18) {
+//             row.classList.add("highlight");
+//         } else {
+//             row.classList.remove("highlight");
+//         }
+//     });
+// }
 
 function peuplerTableau() {
-    let noms = localStorage.getItem("nom").split(',');
-    let emails = localStorage.getItem("email").split(',');
-    let ages = localStorage.getItem("age").split(',');
 
-    if (nom && emails && ages) {
-        let savedClients = [];
-        for (let i = 0; i < noms.length; i++) {
-            let cli = { nom: noms[i], email: emails[i], age: ages[i] };
-            savedClients.push(cli);
-        }
-        clients = savedClients;
-    }
+    fetch('https://jsonplaceholder.typicode.com/users')  // URL de l'API fictive
+        .then(response =>  response.json())
+        .then(data => {
 
-    // Ajouter une ligne dans le tableau
-    const tableBody = document.getElementById("clientTable").querySelector("tbody");
-    clients.forEach(el => {
-        const row = document.createElement("tr");
-
-        row.innerHTML = `
-            <td>${el.nom}</td>
-            <td>${el.email}</td>
-            <td>${el.age}</td>
-            <td><button onclick="supprimerClient(this)">Supprimer</button><button onclick="modifierClient(this)">Modifier</button></td>
-        `;
-
-        tableBody.appendChild(row);
-    });
+            console.log(data);
+            clients = data;
+        
+            // Ajouter une ligne dans le tableau
+            const tableBody = document.getElementById("clientTable").querySelector("tbody");
+            clients.forEach(el => {
+                const row = document.createElement("tr");
+        
+                row.innerHTML = `
+                    <td>${el.name}</td>
+                    <td>${el.email}</td>
+                    <td>${el.phone}</td>
+                    <td><button onclick="supprimerClient(this)">Supprimer</button><button onclick="modifierClient(this)">Modifier</button></td>
+                `;
+        
+                tableBody.appendChild(row);
+            });
+        })
+        .catch(error => console.error('Erreur :', error));  // Gestion des erreurs
 
 }
 
-// Méthode pour trier les clients par nom
-function trierParNom() {
-    clients.sort((a, b) => a.nom.localeCompare(b.nom));
-    console.log("Clients triés par nom :", clients);
+// Méthode pour trier les clients par name
+function trierParname() {
+    clients.sort((a, b) => a.name.localeCompare(b.name));
+    console.log("Clients triés par name :", clients);
     sauvegarderClients();
 }
 
-// Méthode pour trier les clients par âge
-function trierParAge() {
-    clients.sort((a, b) => a.age - b.age);
-    console.log("Clients triés par âge :", clients);
+// Méthode pour trier les clients par téléphone
+function trierParPhone() {
+    clients.sort((a, b) => a.name.localeCompare(b.phone));
+    console.log("Clients triés par téléphone :", clients);
     sauvegarderClients();
 }
 
@@ -115,9 +112,9 @@ function inverserOrdre() {
 }
 
 function sauvegarderClients() {
-    localStorage.setItem('nom', clients.map(el => el.nom));
+    localStorage.setItem('name', clients.map(el => el.name));
     localStorage.setItem('email', clients.map(el => el.email));
-    localStorage.setItem('age', clients.map(el => el.age));
+    localStorage.setItem('phone', clients.map(el => el.phone));
     alert("Clients bien sauvegardés !");
     window.location.reload();
 }
@@ -132,10 +129,10 @@ function rechercherClient() {
     const rows = document.querySelectorAll("#clientTable tbody tr");
 
     rows.forEach(row => {
-        const nom = row.children[0].textContent.toLowerCase();
+        const name = row.children[0].textContent.toLowerCase();
         const email = row.children[1].textContent.toLowerCase();
 
-        if (nom.includes(recherche) || email.includes(recherche)) {
+        if (name.includes(recherche) || email.includes(recherche)) {
             row.style.display = '';
         } else {
             row.style.display = 'none';
@@ -145,14 +142,14 @@ function rechercherClient() {
 
 function modifierClient(button) {
     const row = button.parentElement.parentElement;
-    const nom = row.children[0].textContent;
+    const name = row.children[0].textContent;
     const email = row.children[1].textContent;
-    const age = row.children[2].textContent;
+    const phone = row.children[2].textContent;
 
     // Remplir le formulaire avec les données actuelles
-    document.getElementById('nom').value = nom;
+    document.getElementById('name').value = name;
     document.getElementById('email').value = email;
-    document.getElementById('age').value = age;
+    document.getElementById('phone').value = phone;
 
     supprimerClient(button);
 

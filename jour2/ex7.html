@@ -57,14 +57,14 @@
     <h1>Gestion des clients</h1>
 
     <form id="clientForm">
-        <label for="nom">Nom :</label>
-        <input type="text" id="nom" placeholder="Entrez un nom">
+        <label for="name">name :</label>
+        <input type="text" id="name" placeholder="Entrez un name">
         <br>
         <label for="email">Email :</label>
         <input type="email" id="email" placeholder="Entrez un email">
         <br>
-        <label for="age">Âge :</label>
-        <input type="number" id="age" placeholder="Entrez l'âge">
+        <label for="phone">Téléphone :</label>
+        <input type="text" id="phone" placeholder="Entrez un numéro de Téléphone">
         <br>
         <button type="button" onclick="ajouterClient()">Ajouter un client</button>
     </form>
@@ -73,18 +73,18 @@
 
     <button onclick="styliserMajeurs()">Styliser les majeurs</button>
     <button onclick="sauvegarderClients()">Sauvegarder les clients</button>
-    <button onclick="trierParNom()">Trier les clients par nom</button>
-    <button onclick="trierParAge()">Trier les clients par age</button>
+    <button onclick="trierParname()">Trier les clients par name</button>
+    <button onclick="trierParPhone()">Trier les clients par téléphone</button>
     <button onclick="inverserOrdre()">Inverser les clients</button>
 
     <h2>Liste des clients</h2>
-    <input type="text" id="search" placeholder="Rechercher par nom ou email" oninput="rechercherClient()">
+    <input type="text" id="search" placeholder="Rechercher par name ou email" oninput="rechercherClient()">
     <table id="clientTable">
         <thead>
             <tr>
-                <th>Nom</th>
+                <th>name</th>
                 <th>Email</th>
-                <th>Âge</th>
+                <th>Téléphone</th>
                 <th>Actions</th>
             </tr>
         </thead>
